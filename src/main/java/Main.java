@@ -10,6 +10,9 @@ import java.io.IOException;
 
 public class Main {
     private static ObjectMapper mapper = new ObjectMapper();
+    SimpleTable2 frame = new SimpleTable2();
+    frame.setSize();
+    frame.setVisible(true);
 
     public static void main(String[] args) throws IOException, IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -24,7 +27,7 @@ public class Main {
 
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
-                    var result = EntityUtils.toString(entity);
+                    String result = EntityUtils.toString(entity);
                     ApiResponse<Character> parsedResponse = mapper.readValue(
                             result, mapper.getTypeFactory().constructParametricType(ApiResponse.class, Character.class));
                     System.out.println(result);
@@ -35,5 +38,8 @@ public class Main {
         } finally {
             httpClient.close();
         }
+
+        System.out.println("Hola Mundo");
+
     }
 }
